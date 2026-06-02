@@ -1,22 +1,25 @@
 const express = require('express');
 const app = express();
 
-// Middleware to parse JSON requests
 app.use(express.json());
 
-// 2. Main route requested by requirements
+// Root endpoint
 app.get('/', (req, res) => {
-  res.send('Hello World from GCP Cloud Run');
+  res.send('Hello World from Vercel');
 });
 
-// 6. Health check endpoint
+// Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'healthy' });
 });
 
-// 3. The application must listen on process.env.PORT || 8080
-const PORT = process.env.PORT || 8080;
+// Export the app for Vercel's serverless environment
+module.exports = app;
 
-app.listen(PORT, () => {
-  console.log(`Server is running and listening on port ${PORT}`);
-});
+// Listen only if running locally (not on Vercel)
+if (require.main === module) {
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`Local server is running on port ${PORT}`);
+  });
+}

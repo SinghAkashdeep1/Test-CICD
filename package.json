@@ -1,7 +1,7 @@
 {
-  "name": "gcp-cloud-run-hello-world",
+  "name": "vercel-hello-world",
   "version": "1.0.0",
-  "description": "Production-ready Node.js Express app for Google Cloud Run",
+  "description": "Node.js Express app for Vercel",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
